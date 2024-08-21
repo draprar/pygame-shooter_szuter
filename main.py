@@ -15,9 +15,15 @@ hero_y = screen_height - hero_height
 HERO_STEP = 1
 hero_is_moving_left, hero_is_moving_right = False, False
 
+ball_img = pygame.image.load('img/ball.png')
+ball_width, ball_height = ball_img.get_size()
+ball_x, ball_y = 0, 0
+BALL_STEP = 0.5
+ball_was_fired = False
+
 while True:
     for event in pygame.event.get():
-        # print(event)
+        print(event)
         if event.type == pygame.QUIT:
             sys.exit()
         if event.type == pygame.KEYDOWN:
@@ -25,6 +31,10 @@ while True:
                 hero_is_moving_left = True
             if event.key == pygame.K_RIGHT:
                 hero_is_moving_right = True
+            if event.key == pygame.K_SPACE:
+                ball_was_fired = True
+                ball_x = hero_x + hero_width / 2 - ball_width / 2
+                ball_y = hero_y - ball_height
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
                 hero_is_moving_left = False
@@ -36,8 +46,14 @@ while True:
     if hero_is_moving_right and hero_x <= screen_width - hero_width - HERO_STEP:
         hero_x += HERO_STEP
 
+    if ball_was_fired and ball_y + ball_height < 0:
+        ball_was_fired = False
+    if ball_was_fired:
+        ball_y -= BALL_STEP
 
     screen.fill(screen_fill_color)
     screen.blit(hero_img, (hero_x, hero_y))
+    if ball_was_fired:
+        screen.blit(ball_img, (ball_x, ball_y))
 
     pygame.display.update()
