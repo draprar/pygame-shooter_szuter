@@ -1,6 +1,9 @@
+import math
+
 import pygame
 import sys
-from random import randint
+from random import randint, uniform
+import math
 
 pygame.init()
 
@@ -17,6 +20,7 @@ hero_width, hero_height = hero_img.get_size()
 hero_x = screen_width / 2 - hero_width / 2
 hero_y = screen_height - hero_height
 hero_is_moving_left, hero_is_moving_right = False, False
+hero_rect = pygame.Rect(hero_x, hero_y, hero_width, hero_height)
 
 BALL_STEP = 0.5
 ball_img = pygame.image.load('img/ball.png')
@@ -24,11 +28,17 @@ ball_width, ball_height = ball_img.get_size()
 ball_x, ball_y = 0, 0
 ball_was_fired = False
 
-ALIEN_STEP = 0.3
+ALIEN_SPEED= 0.3
 alien_img = pygame.image.load('img/alien.png')
 alien_width, alien_height = alien_img.get_size()
 alien_x = randint(9, screen_width - alien_width)
 alien_y = 0
+alien_rect = pygame.Rect(alien_x, alien_y, alien_width, alien_height)
+
+alien_angle = math.radians(uniform(0, 180))
+alien_direction_x = ALIEN_SPEED * math.cos(alien_angle)
+alien_direction_y = max(0, ALIEN_SPEED * math.sin(alien_angle))
+
 
 game_is_running = True
 
@@ -62,8 +72,14 @@ while game_is_running:
     if ball_was_fired:
         ball_y -= BALL_STEP
 
-    alien_y += ALIEN_STEP
-    if alien_y + alien_height > hero_y:
+    alien_x += alien_direction_x
+    alien_y += alien_direction_y
+
+    if alien_x < 0 or alien_x > screen_width - alien_width:
+        alien_direction_x *= -1
+        alien_x = max(0, min(alien_x, screen_width - alien_width))
+
+    if hero_rect.colliderect(alien_rect):
         game_is_running = False
 
     screen.fill(screen_fill_color)
