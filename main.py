@@ -97,6 +97,13 @@ while game_is_running:
         alien_direction_y = max(0, ALIEN_SPEED * math.sin(alien_angle))
         game_score += 1
 
+    if alien_y >= screen_height:
+        alien_x = randint(9, screen_width - alien_width)
+        alien_y = 0
+        alien_angle = math.radians(uniform(0, 180))
+        alien_direction_x = ALIEN_SPEED * math.cos(alien_angle)
+        alien_direction_y = max(0, ALIEN_SPEED * math.sin(alien_angle))
+
     screen.fill(screen_fill_color)
     screen.blit(hero_img, (hero_x, hero_y))
     screen.blit(alien_img, (alien_x, alien_y))
