@@ -35,7 +35,6 @@ alien_width, alien_height = alien_img.get_size()
 alien_x = randint(9, screen_width - alien_width)
 alien_y = 0
 alien_rect = pygame.Rect(alien_x, alien_y, alien_width, alien_height)
-
 alien_angle = math.radians(uniform(0, 180))
 alien_direction_x = ALIEN_SPEED * math.cos(alien_angle)
 alien_direction_y = max(0, ALIEN_SPEED * math.sin(alien_angle))
