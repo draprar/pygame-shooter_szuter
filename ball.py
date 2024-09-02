@@ -20,14 +20,16 @@ class Ball:
     def update_position(self):
         if self.was_fired:
             self.y -= self.step
+            self.update_rect()
 
     def is_out_of_screen(self):
         return self.y + self.hero.y < 0
 
     def reset(self):
         self.was_fired = False
+        self.update_rect()
 
-    def topleft(self):
+    def update_rect(self):
         self.rect.topleft = (self.x, self.y)
 
     def is_collision(self, alien):

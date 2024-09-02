@@ -23,7 +23,7 @@ class Alien:
         return self.x < 0 or self.x > SCREEN_WIDTH - self.width
 
     def change_direction(self):
-        self.dirx += -1
+        self.dirx *= -1
         self.x = max(0, min(self.x, SCREEN_WIDTH - self.width))
 
     def reach_screen_height(self):
@@ -34,9 +34,14 @@ class Alien:
 
     def reset(self):
         self.increase_speed()
+        self.x, self.y = randint(0, SCREEN_WIDTH - self.width), 0
+        self.angle = math.radians(uniform(0, 180))
+        self.dirx = self.speed * math.cos(self.angle)
+        self.diry = max(0, self.speed * math.sin(self.angle))
 
-    def topleft(self):
+    def update_rect(self):
         self.rect.topleft = (self.x, self.y)
 
     def reach_hero(self, hero):
+        self.update_rect()
         return self.rect.colliderect(hero)

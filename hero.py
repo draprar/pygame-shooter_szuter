@@ -3,8 +3,8 @@ from constants import SCREEN_WIDTH, SCREEN_HEIGHT, HERO_STEP
 
 
 class Hero:
-    def __init__(self):
-        self.image = pygame.image.load('img/hero.png')
+    def __init__(self, image_path='img/hero.png'):
+        self.image = pygame.image.load(image_path)
         self.width, self.height = self.image.get_size()
         self.x, self.y = SCREEN_WIDTH / 2 - self.width / 2, SCREEN_HEIGHT - self.height
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)

@@ -3,6 +3,7 @@ import pygame
 from hero import Hero
 from alien import Alien
 from ball import Ball
+from menu import Menu
 from constants import SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_FILL_COLOR, GAME_CAPTION
 
 
@@ -15,13 +16,14 @@ class Game:
         self.game_font = pygame.font.Font(None, 30)
         self.game_score = 0
 
-        self.hero = Hero()
+        self.hero = None
         self.alien = Alien()
-        self.ball = Ball(self.hero)
+        self.ball = None
 
         self.game_is_running = True
 
     def run(self):
+        self.show_menu()
         while self.game_is_running:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -31,6 +33,20 @@ class Game:
             self.draw_screen()
 
         self.show_game_over()
+
+    def show_menu(self):
+        menu = Menu(self.screen)
+        menu.display_menu()
+        choice = menu.get_user_choice()
+        if choice == 1:
+            hero_image_path = menu.choose_hero_image()
+            if hero_image_path:
+                self.hero = Hero(hero_image_path)
+            else:
+                self.hero = Hero()
+        else:
+            self.hero = Hero()
+        self.ball = Ball(self.hero)
 
     def handle_key_events(self, event):
         if event.type == pygame.KEYDOWN:
@@ -76,7 +92,7 @@ class Game:
         pygame.display.update()
 
     def show_game_score(self):
-        game_score_text = self.game_font.render(f"Your score is: {self.game_score}", True, 'white')
+        game_score_text = self.game_font.render(f"Your score is: {self.game_score}", True, 'black')
         self.screen.blit(game_score_text, (20, 20))
 
     def show_game_over(self):
