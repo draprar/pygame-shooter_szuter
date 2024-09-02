@@ -4,7 +4,7 @@ from constants import SCREEN_WIDTH, SCREEN_HEIGHT, HERO_STEP
 
 class Hero:
     def __init__(self):
-        self.image = pygame.image.load('images/hero.png')
+        self.image = pygame.image.load('img/hero.png')
         self.width, self.height = self.image.get_size()
         self.x, self.y = SCREEN_WIDTH / 2 - self.width / 2, SCREEN_HEIGHT - self.height
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
@@ -27,3 +27,5 @@ class Hero:
 
         if self.is_moving_right and self.x <= SCREEN_WIDTH - self.width - self.step:
             self.x += self.step
+
+        self.rect.topleft = (self.x, self.y)
