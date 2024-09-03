@@ -5,7 +5,17 @@ from constants import SCREEN_WIDTH, SCREEN_HEIGHT, HERO_STEP
 class Hero:
     def __init__(self, image_path='img/hero.png'):
         self.image = pygame.image.load(image_path)
-        self.width, self.height = self.image.get_size()
+        entry_width, entry_height = self.image.get_size()
+        max_width, max_height = 85, 136
+
+        if entry_width > max_width or entry_height > max_height:
+            scale_factor = min(max_width / entry_width, max_height / entry_height)
+            new_width, new_height = int(entry_width * scale_factor), int(entry_height * scale_factor)
+            self.image = pygame.transform.scale(self.image, (new_width, new_height))
+        else:
+            new_width, new_height = entry_width, entry_height
+
+        self.width, self.height = new_width, new_height
         self.x, self.y = SCREEN_WIDTH / 2 - self.width / 2, SCREEN_HEIGHT - self.height
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
         self.step = HERO_STEP
