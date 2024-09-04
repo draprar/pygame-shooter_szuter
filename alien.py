@@ -14,23 +14,29 @@ class Alien:
         self.angle = math.radians(uniform(0, 180))
         self.dirx = self.speed * math.cos(self.angle)
         self.diry = max(0, self.speed * math.sin(self.angle))
+        self.has_changed_direction = False
 
     def update_position(self):
         self.x += self.dirx
         self.y += self.diry
 
+        if not self.reach_screen_width():
+            self.has_changed_direction = False
+
     def reach_screen_width(self):
         return self.x < 0 or self.x > SCREEN_WIDTH - self.width
 
     def change_direction(self):
-        self.dirx *= -1
-        self.x = max(0, min(self.x, SCREEN_WIDTH - self.width))
+        if not self.has_changed_direction:
+            self.dirx *= -1
+            self.x = max(0, min(self.x, SCREEN_WIDTH - self.width))
+            self.has_changed_direction = True
 
     def reach_screen_height(self):
         return self.y >= SCREEN_HEIGHT
 
     def increase_speed(self):
-        self.speed += 0.1
+        self.speed *= 1.1
 
     def reset(self):
         self.increase_speed()
@@ -38,6 +44,7 @@ class Alien:
         self.angle = math.radians(uniform(0, 180))
         self.dirx = self.speed * math.cos(self.angle)
         self.diry = max(0, self.speed * math.sin(self.angle))
+        self.has_changed_direction = False
 
     def update_rect(self):
         self.rect.topleft = (self.x, self.y)
