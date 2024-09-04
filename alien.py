@@ -1,15 +1,15 @@
 import pygame
 import math
-from constants import SCREEN_WIDTH, SCREEN_HEIGHT, ALIEN_SPEED
+from constants import SCREEN_WIDTH, SCREEN_HEIGHT
 from random import randint, uniform
 
 
 class Alien:
-    def __init__(self):
+    def __init__(self, speed):
         self.image = pygame.image.load('img/alien.png')
         self.width, self.height = self.image.get_size()
         self.x, self.y = randint(0, SCREEN_WIDTH - self.width), 0
-        self.speed = ALIEN_SPEED
+        self.speed = speed
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
         self.angle = math.radians(uniform(0, 180))
         self.dirx = self.speed * math.cos(self.angle)

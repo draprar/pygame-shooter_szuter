@@ -4,7 +4,8 @@ from hero import Hero
 from alien import Alien
 from ball import Ball
 from menu import Menu
-from constants import SCREEN_WIDTH, SCREEN_HEIGHT, BACKGROUND_IMAGE_PATH, GAME_CAPTION
+from constants import SCREEN_WIDTH, SCREEN_HEIGHT, BACKGROUND_IMAGE_PATH, GAME_CAPTION, ALIEN_SPEED_EASY, \
+    ALIEN_SPEED_NORMAL, ALIEN_SPEED_HARD
 
 
 class Game:
@@ -16,9 +17,10 @@ class Game:
         self.screen = pygame.display.set_mode((self.screen_width, self.screen_height))
         self.game_font = pygame.font.Font(None, 30)
         self.game_score = 0
+        self.alien_speed = None
 
         self.hero = None
-        self.alien = Alien()
+        self.alien = None
         self.ball = None
 
         self.game_is_running = True
@@ -38,7 +40,15 @@ class Game:
     def show_menu(self):
         menu = Menu(self.screen)
         menu.display_menu()
-        choice = menu.get_user_choice()
+        choice, difficulty = menu.get_user_choice()
+
+        if difficulty == 'E':
+            self.alien_speed = ALIEN_SPEED_EASY
+        elif difficulty == 'N':
+            self.alien_speed = ALIEN_SPEED_NORMAL
+        elif difficulty == 'H':
+            self.alien_speed = ALIEN_SPEED_HARD
+
         if choice == 1:
             hero_image_path = menu.choose_hero_image()
             if hero_image_path:
@@ -47,6 +57,8 @@ class Game:
                 self.hero = Hero()
         else:
             self.hero = Hero()
+
+        self.alien = Alien(self.alien_speed)
         self.ball = Ball(self.hero)
 
     def handle_key_events(self, event):
