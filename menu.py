@@ -2,6 +2,7 @@ import sys
 import pygame
 import tkinter as tk
 from tkinter import filedialog
+from constants import SCREEN_WIDTH
 
 
 class Menu:
@@ -36,39 +37,48 @@ class Menu:
         lines = self.ascii_logo.splitlines()
         y_offset = 1
         for line in lines:
-            text_surface = self.font.render(line, True, (255, 255, 255))
+            text_surface = self.font.render(line, True, (153, 0, 0))
             self.screen.blit(text_surface, (50, y_offset))
             y_offset += 20
 
         y_offset += 20
         options_text = "Choose your Hero"
-        text_surface = self.font.render(options_text, True, (139, 0, 0))
+        text_surface = self.font.render(options_text, True, (0, 102, 0))
         self.screen.blit(text_surface, (50, y_offset))
         y_offset += 30
-        for option in self.options:
-            text_surface = self.font.render(option, True, (255, 255, 255))
+        for choice, option in enumerate(self.options):
+            if self.selected_option == choice + 1:
+                text_surface = self.font.render(option, True, (0, 255, 0))
+            else:
+                text_surface = self.font.render(option, True, (217, 217, 217))
             self.screen.blit(text_surface, (50, y_offset))
             y_offset += 20
 
         y_offset += 20
         difficulties_text = "Choose Difficulty"
-        text_surface = self.font.render(difficulties_text, True, (139, 0, 0))
+        text_surface = self.font.render(difficulties_text, True, (0, 102, 0))
         self.screen.blit(text_surface, (50, y_offset))
         y_offset += 30
-        for difficulty in self.difficulties:
-            text_surface = self.font.render(difficulty, True, (255, 255, 255))
+        for choice, difficulty in zip(['E', 'N', 'H'], self.difficulties):
+            if self.selected_difficulty == choice:
+                color = (0, 255, 0)
+            else:
+                color = (255, 255, 255)
+            text_surface = self.font.render(difficulty, True, color)
             self.screen.blit(text_surface, (50, y_offset))
             y_offset += 20
 
-        y_offset += 1
+        y_offset += 20
+        start_text = "Press SPACE to ... "
+        text_surface = self.font.render(start_text, True, (0, 102, 0))
+        text_surface_width = text_surface.get_width()
+        x_center = (SCREEN_WIDTH - text_surface_width) / 2
+        self.screen.blit(text_surface, (x_center, y_offset))
         start_lines = self.ascii_start.splitlines()
         for start_line in start_lines:
-            text_surface = self.font.render(start_line, True, (255, 255, 255))
+            text_surface = self.font.render(start_line, True, (217, 217, 217))
             self.screen.blit(text_surface, (50, y_offset))
             y_offset += 20
-        start_text = "Press SPACE to start"
-        text_surface = self.font.render(start_text, True, (255, 0, 0))
-        self.screen.blit(text_surface, (50, y_offset))
 
         pygame.display.update()
 
@@ -93,6 +103,8 @@ class Menu:
                             return self.selected_option, self.selected_difficulty
                         else:
                             return 2, 'E'
+
+            self.display_menu()
 
     def choose_hero_image(self):
         root = tk.Tk()

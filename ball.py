@@ -5,7 +5,7 @@ from constants import BALL_STEP
 class Ball:
     def __init__(self, hero):
         self.image = pygame.image.load('img/ball.png')
-        self.width, self.height = self.image.get_size()
+        self.width, self.height = 64, 36
         self.x, self.y = 0, 0
         self.step = BALL_STEP
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)

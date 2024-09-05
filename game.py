@@ -102,11 +102,20 @@ class Game:
         if self.ball.was_fired:
             self.screen.blit(self.ball.image, (self.ball.x, self.ball.y))
         self.show_game_score()
+        self.show_legend()
         pygame.display.update()
 
     def show_game_score(self):
         game_score_text = self.game_font.render(f"Your score is: {self.game_score}", True, 'white')
         self.screen.blit(game_score_text, (20, 20))
+
+    def show_legend(self):
+        hero_movement_left = self.game_font.render("Move Left: Left Arrow Key", True, 'white')
+        hero_movement_right = self.game_font.render("Move Right: Right Arrow Key", True, 'white')
+        fire_ball = self.game_font.render("Fire: Spacebar", True, 'white')
+        self.screen.blit(hero_movement_left, (500, 20))
+        self.screen.blit(hero_movement_right, (500, 40))
+        self.screen.blit(fire_ball, (500, 60))
 
     def show_game_over(self):
         game_over_text = self.game_font.render("Game Over", True, 'red')
