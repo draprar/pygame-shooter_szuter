@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9afc9dcd-4932-4631-b988-7fedda22d17c" name="Changes" comment="finish">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/python-app.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="9afc9dcd-4932-4631-b988-7fedda22d17c" name="Changes" comment="add pytest and github actions setup">
+      <change afterPath="$PROJECT_DIR$/tests/test_ball_vs_alien.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_hero.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_hero_vs_alien.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/old_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/old_main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +46,7 @@
     "Python.game.executor": "Run",
     "Python.main.executor": "Run",
     "Python.menu.executor": "Run",
+    "Python.test_ball.executor": "Run",
     "Python.test_game.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -186,8 +183,43 @@
       <option name="project" value="LOCAL" />
       <updated>1725562740717</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="add pytest and github actions setup">
+      <option name="closed" value="true" />
+      <created>1726152681547</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1726152681547</updated>
+    </task>
+    <task id="LOCAL-00015" summary="add pytest and github actions setup">
+      <option name="closed" value="true" />
+      <created>1726153040899</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1726153040899</updated>
+    </task>
+    <task id="LOCAL-00016" summary="add pytest and github actions setup">
+      <option name="closed" value="true" />
+      <created>1726153112578</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1726153112578</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -204,6 +236,7 @@
     <MESSAGE value="update accuracy of Alien reach screen width + allow LMB click" />
     <MESSAGE value="add difficulty levels, START btn, README.md, requirements.txt" />
     <MESSAGE value="finish" />
-    <option name="LAST_COMMIT_MESSAGE" value="finish" />
+    <MESSAGE value="add pytest and github actions setup" />
+    <option name="LAST_COMMIT_MESSAGE" value="add pytest and github actions setup" />
   </component>
 </project>
