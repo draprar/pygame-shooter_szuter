@@ -15,7 +15,7 @@ pygame.display.set_caption("Alien shooter game")
 
 # ADD user input
 HERO_STEP = 1
-hero_img = pygame.image.load('img/hero.png')
+hero_img = pygame.image.load('../img/hero.png')
 hero_width, hero_height = hero_img.get_size()
 hero_x = screen_width / 2 - hero_width / 2
 hero_y = screen_height - hero_height
@@ -23,14 +23,14 @@ hero_is_moving_left, hero_is_moving_right = False, False
 hero_rect = pygame.Rect(hero_x, hero_y, hero_width, hero_height)
 
 BALL_STEP = 0.5
-ball_img = pygame.image.load('img/ball.png')
+ball_img = pygame.image.load('../img/ball.png')
 ball_width, ball_height = ball_img.get_size()
 ball_x, ball_y = 0, 0
 ball_was_fired = False
 ball_rect = pygame.Rect(ball_x, ball_y, ball_width, ball_height)
 
 ALIEN_SPEED = 0.2
-alien_img = pygame.image.load('img/alien.png')
+alien_img = pygame.image.load('../img/alien.png')
 alien_width, alien_height = alien_img.get_size()
 alien_x = randint(9, screen_width - alien_width)
 alien_y = 0

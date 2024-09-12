@@ -1,31 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="9afc9dcd-4932-4631-b988-7fedda22d17c" name="Changes" comment="" />
+    <list default="true" id="9afc9dcd-4932-4631-b988-7fedda22d17c" name="Changes" comment="finish">
+      <change afterPath="$PROJECT_DIR$/.github/workflows/python-app.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/old_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/old_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2kyjLoh4KBKc8LRb379Cvo7sg4w" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python.constants.executor": "Run",
+    "Python.game.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.menu.executor": "Run",
+    "Python.test_game.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master"
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\48799\PycharmProjects\pygame\pygame-shooter" />
+      <recent name="C:\Users\48799\PycharmProjects\pygame\pygame-shooter\archive" />
+      <recent name="C:\Users\48799\PycharmProjects\pygame\pygame-shooter\szuter" />
+      <recent name="C:\Users\48799\PycharmProjects\pygame\pygame-shooter\img" />
+      <recent name="C:\Users\48799\PycharmProjects\pygame\pygame-shooter\images" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -42,6 +82,128 @@
       <option name="presentableId" value="Default" />
       <updated>1724262656905</updated>
     </task>
+    <task id="LOCAL-00001" summary="add hero, allow move left/right with keydown cons">
+      <option name="closed" value="true" />
+      <created>1724267113210</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1724267113210</updated>
+    </task>
+    <task id="LOCAL-00002" summary="add ball, allow shoot ball">
+      <option name="closed" value="true" />
+      <created>1724271070174</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1724271070174</updated>
+    </task>
+    <task id="LOCAL-00003" summary="add ball, allow shoot ball; add alien, move it">
+      <option name="closed" value="true" />
+      <created>1724272168486</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1724272168486</updated>
+    </task>
+    <task id="LOCAL-00004" summary="change alien move down to random in x, y dimension">
+      <option name="closed" value="true" />
+      <created>1724359399091</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1724359399091</updated>
+    </task>
+    <task id="LOCAL-00005" summary="add hit alien with ball &#10;add score counter">
+      <option name="closed" value="true" />
+      <created>1724441035647</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1724441035647</updated>
+    </task>
+    <task id="LOCAL-00006" summary="restart alien when hide">
+      <option name="closed" value="true" />
+      <created>1724587333510</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1724587333510</updated>
+    </task>
+    <task id="LOCAL-00007" summary="add Hero&amp;Alien class">
+      <option name="closed" value="true" />
+      <created>1725115550548</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1725115550548</updated>
+    </task>
+    <task id="LOCAL-00008" summary="refactor the code">
+      <option name="closed" value="true" />
+      <created>1725292226395</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1725292226395</updated>
+    </task>
+    <task id="LOCAL-00009" summary="allow user choose custom Hero">
+      <option name="closed" value="true" />
+      <created>1725311546457</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1725311546457</updated>
+    </task>
+    <task id="LOCAL-00010" summary="change fill bg to img, improve custom Hero">
+      <option name="closed" value="true" />
+      <created>1725378314422</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1725378314422</updated>
+    </task>
+    <task id="LOCAL-00011" summary="update accuracy of Alien reach screen width + allow LMB click">
+      <option name="closed" value="true" />
+      <created>1725459801088</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1725459801088</updated>
+    </task>
+    <task id="LOCAL-00012" summary="add difficulty levels, START btn, README.md, requirements.txt">
+      <option name="closed" value="true" />
+      <created>1725485908210</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1725485908210</updated>
+    </task>
+    <task id="LOCAL-00013" summary="finish">
+      <option name="closed" value="true" />
+      <created>1725562740717</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1725562740717</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="add hero, allow move left/right with keydown cons" />
+    <MESSAGE value="add ball, allow shoot ball" />
+    <MESSAGE value="add ball, allow shoot ball; add alien, move it" />
+    <MESSAGE value="change alien move down to random in x, y dimension" />
+    <MESSAGE value="add hit alien with ball &#10;add score counter" />
+    <MESSAGE value="restart alien when hide" />
+    <MESSAGE value="add Hero&amp;Alien class" />
+    <MESSAGE value="refactor the code" />
+    <MESSAGE value="allow user choose custom Hero" />
+    <MESSAGE value="change fill bg to img, improve custom Hero" />
+    <MESSAGE value="update accuracy of Alien reach screen width + allow LMB click" />
+    <MESSAGE value="add difficulty levels, START btn, README.md, requirements.txt" />
+    <MESSAGE value="finish" />
+    <option name="LAST_COMMIT_MESSAGE" value="finish" />
   </component>
 </project>
