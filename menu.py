@@ -9,7 +9,7 @@ class Menu:
     def __init__(self, screen):
         self.screen = screen
         self.font = pygame.font.Font(pygame.font.match_font('consolas', bold=True), 24)
-        self.ascii_logo = """
+        self.ascii_logo = r"""
  _______  _______          _________ _______  _______ 
 (  ____ \/ ___   )|\     /|\__   __/(  ____ \(  ____ )
 | (    \/\/   )  || )   ( |   ) (   | (    \/| (    )|
@@ -19,9 +19,11 @@ class Menu:
 /\____) | /   (_/\| (___) |   | |   | (____/\| ) \ \__
 \_______)(_______/(_______)   )_(   (_______/|/   \__/ 
         """
-        self.ascii_start = """
+        # raw string: \__ etc. are visual characters, not escape sequences
+        # The single \______  on line 2 replaces the former \\ (double-backslash)
+        self.ascii_start = r"""
     _________________________ _____________________
-   /   _____/\__    ___/  _  \\______   \__    ___/
+   /   _____/\__    ___/  _  \______   \__    ___/
    \_____  \   |    | /  /_\  \|       _/ |    |   
    /        \  |    |/    |    \    |   \ |    |   
   /_______  /  |____|\____|__  /____|_  / |____|   
@@ -47,10 +49,8 @@ class Menu:
         self.screen.blit(text_surface, (50, y_offset))
         y_offset += 30
         for choice, option in enumerate(self.options):
-            if self.selected_option == choice + 1:
-                text_surface = self.font.render(option, True, (0, 255, 0))
-            else:
-                text_surface = self.font.render(option, True, (217, 217, 217))
+            color = (0, 255, 0) if self.selected_option == choice + 1 else (217, 217, 217)
+            text_surface = self.font.render(option, True, color)
             self.screen.blit(text_surface, (50, y_offset))
             y_offset += 20
 
@@ -60,22 +60,20 @@ class Menu:
         self.screen.blit(text_surface, (50, y_offset))
         y_offset += 30
         for choice, difficulty in zip(['E', 'N', 'H'], self.difficulties):
-            if self.selected_difficulty == choice:
-                color = (0, 255, 0)
-            else:
-                color = (255, 255, 255)
+            color = (0, 255, 0) if self.selected_difficulty == choice else (255, 255, 255)
             text_surface = self.font.render(difficulty, True, color)
             self.screen.blit(text_surface, (50, y_offset))
             y_offset += 20
 
         y_offset += 20
-        start_text = "Press SPACE to ... "
+        # BUG FIX: render "Press SPACE" header first, then advance y before ASCII art
+        start_text = "Press SPACE to start"
         text_surface = self.font.render(start_text, True, (0, 102, 0))
-        text_surface_width = text_surface.get_width()
-        x_center = (SCREEN_WIDTH - text_surface_width) / 2
+        x_center = (SCREEN_WIDTH - text_surface.get_width()) // 2
         self.screen.blit(text_surface, (x_center, y_offset))
-        start_lines = self.ascii_start.splitlines()
-        for start_line in start_lines:
+        y_offset += 30
+
+        for start_line in self.ascii_start.splitlines():
             text_surface = self.font.render(start_line, True, (217, 217, 217))
             self.screen.blit(text_surface, (50, y_offset))
             y_offset += 20
@@ -86,6 +84,7 @@ class Menu:
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
+                    pygame.quit()
                     sys.exit()
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_1:
@@ -109,10 +108,11 @@ class Menu:
     def choose_hero_image(self):
         root = tk.Tk()
         root.withdraw()
-
-        file_path = filedialog.askopenfilename(
-            title="Select your Hero",
-            filetypes=[("Image files", "*.png;*.jpg;*.jpeg;*.gif")]
-        )
-
+        try:
+            file_path = filedialog.askopenfilename(
+                title="Select your Hero",
+                filetypes=[("Image files", "*.png;*.jpg;*.jpeg;*.gif")]
+            )
+        finally:
+            root.destroy()
         return file_path

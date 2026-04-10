@@ -4,8 +4,10 @@ from hero import Hero
 from alien import Alien
 from ball import Ball
 from menu import Menu
-from constants import SCREEN_WIDTH, SCREEN_HEIGHT, BACKGROUND_IMAGE_PATH, GAME_CAPTION, ALIEN_SPEED_EASY, \
-    ALIEN_SPEED_NORMAL, ALIEN_SPEED_HARD
+from constants import (
+    SCREEN_WIDTH, SCREEN_HEIGHT, FPS, BACKGROUND_IMAGE_PATH, GAME_CAPTION,
+    ALIEN_SPEED_EASY, ALIEN_SPEED_NORMAL, ALIEN_SPEED_HARD,
+)
 
 
 class Game:
@@ -13,11 +15,14 @@ class Game:
         pygame.display.set_caption(GAME_CAPTION)
         self.screen_width, self.screen_height = SCREEN_WIDTH, SCREEN_HEIGHT
         self.background_image = pygame.image.load(BACKGROUND_IMAGE_PATH)
-        self.background_image = pygame.transform.scale(self.background_image, (self.screen_width, self.screen_height))
+        self.background_image = pygame.transform.scale(
+            self.background_image, (self.screen_width, self.screen_height)
+        )
         self.screen = pygame.display.set_mode((self.screen_width, self.screen_height))
         self.game_font = pygame.font.Font(None, 30)
         self.game_score = 0
         self.alien_speed = None
+        self.clock = pygame.time.Clock()
 
         self.hero = None
         self.alien = None
@@ -30,10 +35,12 @@ class Game:
         while self.game_is_running:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
+                    pygame.quit()
                     sys.exit()
                 self.handle_key_events(event)
             self.update_game_state()
             self.draw_screen()
+            self.clock.tick(FPS)
 
         self.show_game_over()
 
@@ -52,7 +59,10 @@ class Game:
         if choice == 1:
             hero_image_path = menu.choose_hero_image()
             if hero_image_path:
-                self.hero = Hero(hero_image_path)
+                try:
+                    self.hero = Hero(hero_image_path)
+                except (pygame.error, FileNotFoundError):
+                    self.hero = Hero()
             else:
                 self.hero = Hero()
         else:
@@ -70,7 +80,7 @@ class Game:
             if event.key == pygame.K_SPACE:
                 self.ball.fire()
         if event.type == pygame.KEYUP:
-            if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
+            if event.key in (pygame.K_LEFT, pygame.K_RIGHT):
                 self.hero.stop_moving()
 
     def update_game_state(self):
@@ -106,21 +116,25 @@ class Game:
         pygame.display.update()
 
     def show_game_score(self):
-        game_score_text = self.game_font.render(f"Your score is: {self.game_score}", True, 'white')
+        game_score_text = self.game_font.render(
+            f"Your score is: {self.game_score}", True, 'white'
+        )
         self.screen.blit(game_score_text, (20, 20))
 
     def show_legend(self):
-        hero_movement_left = self.game_font.render("Move Left: Left Arrow Key", True, 'white')
-        hero_movement_right = self.game_font.render("Move Right: Right Arrow Key", True, 'white')
-        fire_ball = self.game_font.render("Fire: Spacebar", True, 'white')
-        self.screen.blit(hero_movement_left, (500, 20))
-        self.screen.blit(hero_movement_right, (500, 40))
-        self.screen.blit(fire_ball, (500, 60))
+        texts = [
+            ("Move Left: Left Arrow Key", (500, 20)),
+            ("Move Right: Right Arrow Key", (500, 40)),
+            ("Fire: Spacebar", (500, 60)),
+        ]
+        for text, pos in texts:
+            surface = self.game_font.render(text, True, 'white')
+            self.screen.blit(surface, pos)
 
     def show_game_over(self):
         game_over_text = self.game_font.render("Game Over", True, 'red')
         game_over_rectangle = game_over_text.get_rect()
-        game_over_rectangle.center = (self.screen_width / 2, self.screen_height / 2)
+        game_over_rectangle.center = (self.screen_width // 2, self.screen_height // 2)
         self.screen.blit(game_over_text, game_over_rectangle)
         pygame.display.update()
         pygame.time.wait(500)

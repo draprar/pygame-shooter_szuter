@@ -19,6 +19,7 @@ class Alien:
     def update_position(self):
         self.x += self.dirx
         self.y += self.diry
+        self.update_rect()
 
         if not self.reach_screen_width():
             self.has_changed_direction = False
@@ -45,10 +46,11 @@ class Alien:
         self.dirx = self.speed * math.cos(self.angle)
         self.diry = max(0, self.speed * math.sin(self.angle))
         self.has_changed_direction = False
+        self.update_rect()
 
     def update_rect(self):
         self.rect.topleft = (self.x, self.y)
 
     def reach_hero(self, hero):
-        self.update_rect()
-        return self.rect.colliderect(hero)
+        # BUG FIX: colliderect against hero.rect, not the Hero object
+        return self.rect.colliderect(hero.rect)
